@@ -3,32 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolgram - Online Tools</title>
+  <title>Toolgram</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
-    header { background: #222; color: #fff; padding: 20px; text-align: center; }
-    .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 40px; }
-    a.button { display: block; background: #0078ff; color: #fff; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; transition: 0.3s; }
-    a.button:hover { background: #005ec7; }
-    footer { background: #222; color: #ccc; text-align: center; padding: 15px; margin-top: 30px; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .card:active {
+      transform: scale(0.95);
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #444;
+    }
+
+    /* Placeholder image box */
+    .img-box {
+      height: 80px;
+      background: #eee;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🔧 Toolgram</h1>
-    <p>All in one free online tools</p>
-  </header>
+  <h1>⚡ Toolgram ⚡</h1>
+  
+  <div class="grid">
+    <!-- First Card -->
+    <a href="Calculator.html" class="card">
+      <div class="img-box">🧮</div>
+      <h2>Calculators</h2>
+    </a>
 
-  <div class="container">
-    <a href="calculator.html" class="button">Calculator</a>
-    <a href="text-editor.html" class="button">Text Editor</a>
-    <a href="password-generator.html" class="button">Password Generator</a>
-    <a href="file-tool.html" class="button">File Tool</a>
-    <a href="about.html" class="button">About</a>
+    <!-- Second Card -->
+    <a href="FileTools.html" class="card">
+      <div class="img-box">📂</div>
+      <h2>File Tools</h2>
+    </a>
+
+    <!-- Extra Tools (future) -->
+    <a href="Tool3.html" class="card">
+      <div class="img-box">⚙️</div>
+      <h2>Tool 3</h2>
+    </a>
+
+    <a href="Tool4.html" class="card">
+      <div class="img-box">🔧</div>
+      <h2>Tool 4</h2>
+    </a>
   </div>
-
-  <footer>
-    <p>© 2025 Toolgram. All rights reserved.</p>
-  </footer>
 </body>
 </html>
