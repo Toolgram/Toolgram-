@@ -3,47 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolgram</title>
+  <title>Toolgram - Online Tools</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      background: #f4f4f9;
-    }
-    header {
-      background: #222;
-      color: #fff;
-      padding: 20px 0;
-      font-size: 24px;
-    }
-    main {
-      padding: 30px;
-    }
-    a.button {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      background: #007BFF;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    a.button:hover {
-      background: #0056b3;
-    }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+    header { background: #222; color: #fff; padding: 20px; text-align: center; }
+    .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 40px; }
+    a.button { display: block; background: #0078ff; color: #fff; text-decoration: none; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; transition: 0.3s; }
+    a.button:hover { background: #005ec7; }
+    footer { background: #222; color: #ccc; text-align: center; padding: 15px; margin-top: 30px; }
   </style>
 </head>
 <body>
   <header>
-    🚀 Toolgram
+    <h1>🔧 Toolgram</h1>
+    <p>All in one free online tools</p>
   </header>
-  <main>
-    <h1>Welcome to Toolgram!</h1>
-    <p>Your free online tools hub.</p>
-    <a href="#" class="button">Try Tool 1</a>
-    <a href="#" class="button">Try Tool 2</a>
-  </main>
+
+  <div class="container">
+    <a href="calculator.html" class="button">Calculator</a>
+    <a href="text-editor.html" class="button">Text Editor</a>
+    <a href="password-generator.html" class="button">Password Generator</a>
+    <a href="file-tool.html" class="button">File Tool</a>
+    <a href="about.html" class="button">About</a>
+  </div>
+
+  <footer>
+    <p>© 2025 Toolgram. All rights reserved.</p>
+  </footer>
 </body>
 </html>
