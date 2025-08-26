@@ -96,7 +96,7 @@
 </head>
 <body>
   <header>
-    <h1>Tollgram 🔧</h1>
+    <h1>Toolgram 🔧</h1>
   </header>
 
   <!-- Number to Words Converter -->
@@ -111,14 +111,14 @@
   <div class="tool-section">
     <h2>PDF Tools</h2>
     <div class="tools-grid" id="pdf-tools"></div>
-    <button class="see-more" onclick="toggleTools('pdf-tools')" style="display:none;">See More</button>
+    <button class="see-more" onclick="toggleTools('pdf-tools', this)" style="display:none;">Show More</button>
   </div>
 
   <!-- Other Tools Section -->
   <div class="tool-section">
     <h2>Other Tools</h2>
     <div class="tools-grid" id="other-tools"></div>
-    <button class="see-more" onclick="toggleTools('other-tools')" style="display:none;">See More</button>
+    <button class="see-more" onclick="toggleTools('other-tools', this)" style="display:none;">Show More</button>
   </div>
 
   <footer>
@@ -133,7 +133,7 @@
         document.getElementById("words-output").innerText = "Please enter a number";
         return;
       }
-      document.getElementById("words-output").innerText = numberToWords(num);
+      document.getElementById("words-output").innerText = numberToWords(num) + " only";
     }
 
     function numberToWords(num) {
@@ -189,15 +189,17 @@
       });
       if (tools.length > 4) {
         container.nextElementSibling.style.display = "block";
+        container.nextElementSibling.innerText = "Show More";
       }
     }
 
-    function toggleTools(sectionId) {
+    function toggleTools(sectionId, btn) {
       const hidden = document.querySelectorAll(".hidden-" + sectionId);
+      let isHidden = hidden[0].style.display === "none" || hidden[0].style.display === "";
       hidden.forEach(el => {
-        if (el.style.display === "none") el.style.display = "block";
-        else el.style.display = "none";
+        el.style.display = isHidden ? "block" : "none";
       });
+      btn.innerText = isHidden ? "Show Less" : "Show More";
     }
 
     renderTools("pdf-tools", pdfTools);
