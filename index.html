@@ -183,22 +183,28 @@
       tools.forEach((tool, i) => {
         let div = document.createElement("div");
         div.className = "tool-card hidden-" + sectionId;
-        if (i >= 4) div.style.display = "none";
+        // initially display only first 4 tools
+        div.style.display = i < 4 ? "block" : "none";
         div.innerHTML = `<img src="${tool.img}" alt=""><p>${tool.name}</p>`;
         container.appendChild(div);
       });
       if (tools.length > 4) {
-        container.nextElementSibling.style.display = "block";
-        container.nextElementSibling.innerText = "Show More";
+        const btn = container.nextElementSibling;
+        btn.style.display = "block";
+        btn.innerText = "Show More";
       }
     }
 
     function toggleTools(sectionId, btn) {
       const hidden = document.querySelectorAll(".hidden-" + sectionId);
-      let isHidden = hidden[0].style.display === "none" || hidden[0].style.display === "";
-      hidden.forEach(el => {
+      const firstFour = Array.from(hidden).slice(0, 4); // pehle 4 hamesha visible
+      const rest = Array.from(hidden).slice(4); // baki tools toggle honge
+
+      let isHidden = rest[0].style.display === "none" || rest[0].style.display === "";
+      rest.forEach(el => {
         el.style.display = isHidden ? "block" : "none";
       });
+
       btn.innerText = isHidden ? "Show Less" : "Show More";
     }
 
