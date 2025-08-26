@@ -2,17 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toolgram 🔧</title>
+  <title>Toolgram</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; background:#f9f9f9; }
-    header, footer { background:#000; color:#fff; text-align:center; padding:15px; }
-    .section { padding:20px; }
-    .divider { height:2px; background:rgba(0,0,0,0.1); margin:30px 0; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap:20px; }
-    .tool { background:#fff; border-radius:10px; padding:20px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.1); transition:transform 0.2s; cursor:pointer; }
-    .tool:hover { transform:scale(1.05); }
-    .tool img { width:60px; height:60px; margin-bottom:10px; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f7f7;
+    }
+    header, footer {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+    .divider {
+      border-bottom: 2px solid rgba(0,0,0,0.1);
+      margin: 25px 0;
+    }
+    .tool-section {
+      padding: 20px;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+    }
+    .tool {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .tool:hover {
+      transform: scale(1.05);
+    }
+    .see-more-btn {
+      display: block;
+      margin: 15px auto;
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #numberInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #result {
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      min-height: 40px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 <body>
@@ -21,56 +76,15 @@
   </header>
 
   <!-- Number to Words Tool -->
-  <div class="section">
-    <h2>Number to Words</h2>
-    <input type="number" id="numInput" placeholder="Enter number">
-    <button onclick="convertNum()">Convert</button>
-    <p id="numOutput"></p>
+  <div class="tool-section">
+    <h2>Number to Words Converter</h2>
+    <input type="number" id="numberInput" placeholder="Enter a number...">
+    <div id="result"></div>
   </div>
 
   <div class="divider"></div>
 
   <!-- PDF Tools -->
-  <div class="section">
+  <div class="tool-section">
     <h2>PDF Tools</h2>
-    <div class="grid">
-      <div class="tool"><img src="icons/word-pdf.png"><p>Word to PDF</p></div>
-      <div class="tool"><img src="icons/pdf-excel.png"><p>PDF to Excel</p></div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- Calculators -->
-  <div class="section">
-    <h2>Calculators</h2>
-    <div class="grid">
-      <div class="tool"><img src="icons/percentage.png"><p>Percentage</p></div>
-      <div class="tool"><img src="icons/age.png"><p>Age Calculator</p></div>
-    </div>
-  </div>
-
-  <footer>
-    © 2025 All rights reserved
-  </footer>
-
-  <script>
-    function convertNum(){
-      let num = document.getElementById("numInput").value;
-      let words = numberToWords(num);
-      document.getElementById("numOutput").innerText = words;
-    }
-
-    // Simple number to words converter (English only, demo)
-    function numberToWords(num) {
-      const a = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten",
-      "Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"];
-      const b = ["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
-      if (num < 20) return a[num];
-      if (num < 100) return b[Math.floor(num/10)] + " " + a[num%10];
-      if (num < 1000) return a[Math.floor(num/100)] + " Hundred " + numberToWords(num%100);
-      return num;
-    }
-  </script>
-</body>
-</html>
+    <div class="tools-grid" id="pdfTools"></div>
