@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tollgram 🔧</title>
+  <title>Tollgram Tools</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
-      background: #f5f5f5;
-      color: #333;
+      padding: 0;
+      background: #f9f9f9;
     }
     header, footer {
       background: #000;
@@ -17,191 +17,210 @@
       text-align: center;
       padding: 15px 0;
     }
-    footer {
+    h2 {
+      text-align: center;
       margin-top: 20px;
     }
-    h1 { margin: 0; font-size: 24px; }
-    h2 {
-      margin: 20px 0 10px;
-      padding-left: 10px;
-      font-size: 20px;
-      border-bottom: 2px solid #ddd;
-    }
     .tool-section {
-      margin: 20px 10px;
+      margin: 30px auto;
+      max-width: 900px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .tools-grid {
+    .divider {
+      border-top: 2px dashed #ccc;
+      margin: 30px 0;
+    }
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 15px;
     }
-    .tool-card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    .tool {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
       text-align: center;
-      padding: 20px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: all 0.3s;
       cursor: pointer;
     }
-    .tool-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 12px rgba(0,0,0,0.15);
-    }
-    .tool-card img {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 10px;
+    .tool:hover {
+      background: #ddd;
     }
     .see-more {
-      display: block;
-      margin: 15px auto;
-      padding: 10px 20px;
-      background: #000;
-      color: #fff;
+      margin-top: 15px;
+      text-align: center;
+    }
+    .see-more button {
+      padding: 8px 16px;
       border: none;
       border-radius: 5px;
+      background: #000;
+      color: #fff;
       cursor: pointer;
-      transition: 0.2s;
     }
-    .see-more:hover {
-      background: #333;
+    .see-more button:hover {
+      background: #444;
     }
-    .converter-box {
-      margin: 20px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    input {
+    .converter input {
       padding: 10px;
-      width: calc(100% - 20px);
-      margin-bottom: 10px;
+      width: 70%;
+      margin-right: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    button {
-      padding: 10px;
-      width: 100%;
+    .converter button {
+      padding: 10px 20px;
+      border: none;
       background: #000;
       color: #fff;
-      border: none;
       border-radius: 5px;
       cursor: pointer;
     }
-    button:hover { background: #333; }
-    #words-output { margin-top: 10px; font-weight: bold; }
+    .converter button:hover {
+      background: #444;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Tollgram 🔧</h1>
+    <h1>🔧 Tollgram Tools</h1>
   </header>
 
-  <!-- Number to Words Converter -->
-  <div class="converter-box">
-    <h2>Number to Words</h2>
-    <input type="number" id="numberInput" placeholder="Enter any number">
-    <button onclick="convertNumber()">Convert</button>
-    <p id="words-output"></p>
+  <!-- Number to Words -->
+  <div class="tool-section">
+    <h2>Number to Words Converter</h2>
+    <div class="converter">
+      <input type="number" id="numberInput" placeholder="Enter number">
+      <button onclick="convertNumber()">Convert</button>
+      <div class="result" id="result"></div>
+    </div>
   </div>
 
-  <!-- PDF Tools Section -->
+  <div class="divider"></div>
+
+  <!-- PDF Tools -->
   <div class="tool-section">
     <h2>PDF Tools</h2>
-    <div class="tools-grid" id="pdf-tools"></div>
-    <button class="see-more" onclick="toggleTools('pdf-tools')" style="display:none;">See More</button>
+    <div class="grid" id="pdfTools"></div>
+    <div class="see-more" id="pdfToggle"></div>
   </div>
 
-  <!-- Other Tools Section -->
+  <div class="divider"></div>
+
+  <!-- Calculator Tools -->
   <div class="tool-section">
-    <h2>Other Tools</h2>
-    <div class="tools-grid" id="other-tools"></div>
-    <button class="see-more" onclick="toggleTools('other-tools')" style="display:none;">See More</button>
+    <h2>Calculators</h2>
+    <div class="grid" id="calcTools"></div>
+    <div class="see-more" id="calcToggle"></div>
   </div>
 
   <footer>
-    <p>© 2025 All Rights Reserved</p>
+    <p>© 2025 Tollgram. All rights reserved.</p>
   </footer>
 
-  <script>
-    // Number to Words Unlimited
-    function convertNumber() {
-      let num = document.getElementById("numberInput").value;
-      if (num === "") {
-        document.getElementById("words-output").innerText = "Please enter a number";
-        return;
-      }
-      document.getElementById("words-output").innerText = numberToWords(num);
+<script>
+  // ===== Number to Words =====
+  function convertNumber() {
+    const num = document.getElementById("numberInput").value;
+    if (num === "") {
+      document.getElementById("result").innerText = "Please enter a number.";
+      return;
     }
+    document.getElementById("result").innerText = numberToWords(num) + " Only";
+  }
 
-    function numberToWords(num) {
-      const a = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten",
-        "Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen"];
-      const b = ["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+  function numberToWords(num) {
+    const a = [
+      "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+      "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen",
+      "Sixteen", "Seventeen", "Eighteen", "Nineteen"
+    ];
+    const b = [
+      "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"
+    ];
+    const g = ["", "Thousand", "Million", "Billion", "Trillion", "Quadrillion"];
 
-      if ((num = num.toString()).length > 15) return "Number too large";
-      let n = ("000000000000000" + num).substr(-15).match(/.{3}/g);
+    if (num === "0") return "Zero";
+
+    let chunk = (n) => {
       let str = "";
-      const bigUnits = ["Trillion","Billion","Million","Thousand",""];
-      for (let i = 0; i < 5; i++) {
-        let x = parseInt(n[i]);
-        if (!x) continue;
-        let hundreds = Math.floor(x / 100);
-        let tens = x % 100;
-        str += (hundreds ? a[hundreds] + " Hundred " : "");
-        if (tens < 20) str += a[tens];
-        else str += b[Math.floor(tens / 10)] + (a[x % 10] ? " " + a[x % 10] : "");
-        str += " " + bigUnits[i] + " ";
+      if (n >= 100) {
+        str += a[Math.floor(n/100)] + " Hundred ";
+        n %= 100;
       }
+      if (n >= 20) {
+        str += b[Math.floor(n/10)] + " ";
+        n %= 10;
+      }
+      if (n > 0) str += a[n] + " ";
       return str.trim();
+    };
+
+    let result = "";
+    let i = 0;
+    while (num > 0) {
+      let n = num % 1000;
+      if (n !== 0) {
+        result = chunk(n) + " " + g[i] + " " + result;
+      }
+      num = Math.floor(num / 1000);
+      i++;
     }
+    return result.trim();
+  }
 
-    // Tools Data
-    const pdfTools = [
-      {name: "Word to PDF", img:"https://img.icons8.com/office/80/pdf.png"},
-      {name: "PDF to Excel", img:"https://img.icons8.com/office/80/ms-excel.png"},
-      {name: "PDF to JPG", img:"https://img.icons8.com/office/80/picture.png"},
-      {name: "Merge PDF", img:"https://img.icons8.com/office/80/combine.png"},
-      {name: "Split PDF", img:"https://img.icons8.com/office/80/divide.png"},
-      {name: "Compress PDF", img:"https://img.icons8.com/office/80/compression.png"},
-      {name: "Unlock PDF", img:"https://img.icons8.com/office/80/unlock.png"},
-    ];
+  // ===== Tools Data =====
+  const pdfTools = [
+    "Word to PDF", "PDF to Word", "PDF to Excel", "Excel to PDF",
+    "Merge PDF", "Split PDF", "Compress PDF", "PDF to JPG",
+    "JPG to PDF", "Unlock PDF", "Protect PDF"
+  ];
 
-    const otherTools = [
-      {name: "Percentage Calculator", img:"https://img.icons8.com/office/80/percentage.png"},
-      {name: "Age Calculator", img:"https://img.icons8.com/office/80/birthday.png"},
-      {name: "Text to Speech", img:"https://img.icons8.com/office/80/microphone.png"},
-      {name: "QR Code Generator", img:"https://img.icons8.com/office/80/qr-code.png"},
-      {name: "Unit Converter", img:"https://img.icons8.com/office/80/ruler.png"}
-    ];
+  const calcTools = [
+    "Percentage Calculator", "Age Calculator", "Loan Calculator",
+    "BMI Calculator", "Unit Converter"
+  ];
 
-    function renderTools(sectionId, tools) {
-      const container = document.getElementById(sectionId);
+  function renderTools(tools, containerId, toggleId) {
+    const container = document.getElementById(containerId);
+    const toggle = document.getElementById(toggleId);
+
+    let showingAll = false;
+
+    function update() {
       container.innerHTML = "";
-      tools.forEach((tool, i) => {
-        let div = document.createElement("div");
-        div.className = "tool-card hidden-" + sectionId;
-        if (i >= 4) div.style.display = "none";
-        div.innerHTML = `<img src="${tool.img}" alt=""><p>${tool.name}</p>`;
+      const displayTools = showingAll ? tools : tools.slice(0, 4);
+      displayTools.forEach(t => {
+        const div = document.createElement("div");
+        div.className = "tool";
+        div.innerText = t;
         container.appendChild(div);
       });
+
+      toggle.innerHTML = "";
       if (tools.length > 4) {
-        container.nextElementSibling.style.display = "block";
+        const btn = document.createElement("button");
+        btn.innerText = showingAll ? "See Less" : "See More";
+        btn.onclick = () => {
+          showingAll = !showingAll;
+          update();
+        };
+        toggle.appendChild(btn);
       }
     }
+    update();
+  }
 
-    function toggleTools(sectionId) {
-      const hidden = document.querySelectorAll(".hidden-" + sectionId);
-      hidden.forEach(el => {
-        if (el.style.display === "none") el.style.display = "block";
-        else el.style.display = "none";
-      });
-    }
-
-    renderTools("pdf-tools", pdfTools);
-    renderTools("other-tools", otherTools);
-  </script>
+  renderTools(pdfTools, "pdfTools", "pdfToggle");
+  renderTools(calcTools, "calcTools", "calcToggle");
+</script>
 </body>
 </html>
